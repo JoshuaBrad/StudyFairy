@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Study Fairy Complaints</title>
+    <style>
+        form {
+            width: fit-content;
+            border: 1px solid black;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 30px;  
+        }
+        #complaintText {
+            width: 98vw;      
+            height: calc(1.2em * 10); 
+            resize: none;      
+            box-sizing: border-box; 
+            padding: 8px;      
+            font-size: 16px;   
+        }
+        body {
+            text-align: center;
+            background-image: url('StudyFairyBG.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color:greenyellow;
+        }
+    </style>
+    <script>
+        function compliment(){
+            var complimentBtn = document.getElementById("rdoCompliment");
+            var complaintBtn = document.getElementById("rdoComplaint");
+
+            complaintBtn.checked = true;
+            complimentBtn.checked = false;
+
+            var alertRnd = Math.floor(Math.random() * 10);
+            switch (alertRnd) {
+                case 0:
+                    alert("NO compliments allowed! You will now submit a complaint!");
+                    break;
+                case 1:
+                    alert("Why would you want to compliment the study fairy?? No no no, you should rather complain.");
+                    break;
+                case 2:
+                    alert("Compliments? Not here! Complaints are the way to go!");
+                    break;
+                case 3:
+                    alert("Who needs compliments when complaints are so much better?");
+                    break;
+                case 4:
+                    alert("Compliments are overrated! It's time to complain.");
+                    break;
+                case 5:
+                    alert("No compliments allowed! You should be complaining by now!");
+                    break;
+                case 6:
+                    alert("Stop right there! Compliments? We deal in complaints only.");
+                    break;
+                case 7:
+                    alert("Compliments? You must be mistaken—complaints are the rule!");
+                    break;
+                case 8:
+                    alert("A compliment? How strange. A complaint would be much more appropriate.");
+                    break;
+                case 9:
+                    alert("No room for compliments! Complaints, complaints, and more complaints!");
+                    break;
+            }
+
+            var textbox = document.getElementById("complaintText");
+            textbox.placeholder = "Enter your complaint here.";    
+        }
+
+        function complaints() {
+            var textbox = document.getElementById("complaintText");
+            textbox.placeholder = "Enter your complaint here.";  
+        }
+
+        function submition() {
+            var textbox = document.getElementById("complaintText");
+            textbox.placeholder = "Enter your complaint here."; 
+            var complaintBtn = document.getElementById("rdoComplaint");
+            if (textbox.value.trim() !== "" && complaintBtn.checked==true) {
+                alert("Your complaint has been recorded and will be taken up with the Study Fairy at the earliest possible time. For now she's out and we don't have a clue where she is or when she might be back!");
+            } else {
+                if(textbox.value.trim() == ""){alert("Please enter a complaint before submitting!");}
+                if(complaintBtn.checked==false){alert("Please select if this is a complaint or compliment before submitting!")}
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Study Fairy complaints and compliments page!</h1>
+    <h2>Do you have a complaint or compliment about the Study Fairy?</h2>
+    <h4>If you do, you're in the right place!</h4>
+    <form>
+        <input type="radio" name="rdoComplaint" id="rdoComplaint" onclick="complaints()">Complaint 
+        <br><br><br>
+        <input type="radio" name="rdoCompliment" id="rdoCompliment" onclick="compliment()">Compliment
+        <br><br><br>
+        <textarea name="complaintText" id="complaintText"></textarea>
+        <br><br>
+        <!-- Changed type to 'button' to prevent form submission -->
+        <button id="submit" type="button" onclick="submition()">Submit</button>
+    </form>
+</body>
+</html>
