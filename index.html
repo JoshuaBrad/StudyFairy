@@ -78,8 +78,8 @@
             textbox.placeholder = "Enter your complaint here.";  
         }
 
-        function submition(event) {
-            event.preventDefault(); // Prevent form from submitting immediately
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent form from submitting before validation
 
             var textbox = document.getElementById("complaintText");
             var complaintBtn = document.getElementById("rdoComplaint");
@@ -88,9 +88,8 @@
             if (textbox.value.trim() !== "" && complaintBtn.checked == true) {
                 alert("Your complaint has been recorded and will be taken up with the Study Fairy at the earliest possible time. For now she's out and we don't have a clue where she is or when she might be back!");
                 
-                // After the alert, submit the form 
-                document.getElementById("studyFairyForm").submit(); // Manually submit the form after validation and alert
-
+                // Manually submit the form after validation and alert
+                document.getElementById("studyFairyForm").submit(); 
             } else {
                 if (textbox.value.trim() === "") {
                     alert("Please enter a complaint before submitting!");
@@ -107,8 +106,7 @@
     <h2>Do you have a complaint or compliment about the Study Fairy?</h2>
     <h4>If you do, you're in the right place!</h4>
     
-    <!-- Added form attributes required by Netlify -->
-    <form id="studyFairyForm" name="studyFairyForm" method="POST" data-netlify="true" netlify>
+    <form id="studyFairyForm" name="studyFairyForm" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="studyFairyForm"> <!-- Required hidden field -->
         
         <input type="radio" name="feedbackType" id="rdoComplaint" onclick="complaints()"> Complaint 
@@ -120,7 +118,7 @@
         <br><br>
         
         <!-- Changed type to 'button' to prevent form from submitting before validation -->
-        <button id="submit" type="button" onclick="submition(event)">Submit</button>
+        <button id="submit" type="button" onclick="handleSubmit(event)">Submit</button>
     </form>
 </body>
 </html>
