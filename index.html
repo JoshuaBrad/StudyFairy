@@ -24,11 +24,11 @@
             background-image: url('StudyFairyBG.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-            color:greenyellow;
+            color: greenyellow;
         }
     </style>
     <script>
-        function compliment(){
+        function compliment() {
             var complimentBtn = document.getElementById("rdoCompliment");
             var complaintBtn = document.getElementById("rdoComplaint");
 
@@ -78,16 +78,26 @@
             textbox.placeholder = "Enter your complaint here.";  
         }
 
-        function submition() {
+        function submition(event) {
+            event.preventDefault(); // Prevent form from submitting immediately
+
             var textbox = document.getElementById("complaintText");
-            textbox.placeholder = "Enter your complaint here."; 
             var complaintBtn = document.getElementById("rdoComplaint");
-            if (textbox.value.trim() !== "" && complaintBtn.checked==true) {
+            var complimentBtn = document.getElementById("rdoCompliment");
+
+            if (textbox.value.trim() !== "" && complaintBtn.checked == true) {
                 alert("Your complaint has been recorded and will be taken up with the Study Fairy at the earliest possible time. For now she's out and we don't have a clue where she is or when she might be back!");
-                textbox.value="";
+                
+                // After the alert, submit the form
+                document.getElementById("studyFairyForm").submit(); // Manually submit the form after validation and alert
+
             } else {
-                if(textbox.value.trim() == ""){alert("Please enter a complaint before submitting!");}
-                if(complaintBtn.checked==false){alert("Please select if this is a complaint or compliment before submitting!")}
+                if (textbox.value.trim() === "") {
+                    alert("Please enter a complaint before submitting!");
+                }
+                if (!complaintBtn.checked && !complimentBtn.checked) {
+                    alert("Please select if this is a complaint or compliment before submitting!");
+                }
             }
         }
     </script>
@@ -96,15 +106,21 @@
     <h1>Welcome to the Study Fairy complaints and compliments page!</h1>
     <h2>Do you have a complaint or compliment about the Study Fairy?</h2>
     <h4>If you do, you're in the right place!</h4>
-    <form netlify>
-        <input type="radio" name="rdoComplaint" id="rdoComplaint" onclick="complaints()">Complaint 
+    
+    <!-- Added form attributes required by Netlify -->
+    <form id="studyFairyForm" name="studyFairyForm" method="POST" data-netlify="true" netlify>
+        <input type="hidden" name="form-name" value="studyFairyForm"> <!-- Required hidden field -->
+        
+        <input type="radio" name="feedbackType" id="rdoComplaint" onclick="complaints()"> Complaint 
         <br><br><br>
-        <input type="radio" name="rdoCompliment" id="rdoCompliment" onclick="compliment()">Compliment
+        <input type="radio" name="feedbackType" id="rdoCompliment" onclick="compliment()"> Compliment
         <br><br><br>
+        
         <textarea name="complaintText" id="complaintText"></textarea>
         <br><br>
-        <!-- Changed type to 'button' to prevent form submission -->
-        <button id="submit" onclick="submition()">Submit</button>
+        
+        <!-- Changed type to 'button' to prevent form from submitting before validation -->
+        <button id="submit" type="button" onclick="submition(event)">Submit</button>
     </form>
 </body>
 </html>
