@@ -16,12 +16,11 @@
     color: lightyellow;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
-#headers{
+#bodies{
     border: 1px solid black;
             border-radius: 30px;
             padding: 10px;
             background-color: rgba(0, 0, 0, 0.5);
-            width: fit-content;
             text-align: center;
 }
         #complaintText {
@@ -128,13 +127,10 @@
     </script>
 </head>
 <body>
-    <div id="headers">
+    <div id="bodies">
         <h1>Welcome to the Study Fairy complaints and compliments page!</h1>
     <h2>Do you have a complaint or compliment about the Study Fairy?</h2>
     <h4>If you do, you're in the right place!</h4>
-    </div>
-    
-    
     <form id="studyFairyForm" name="studyFairyForm" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="studyFairyForm"> <!-- Required hidden field -->
         
@@ -149,5 +145,9 @@
         <!-- Changed id from 'submit' to 'submitBtn' to avoid naming conflict -->
         <button id="submitBtn" type="button" onclick="handleSubmit(event)">Submit</button>
     </form>
+    </div>
+    
+    
+    
 </body>
 </html>
