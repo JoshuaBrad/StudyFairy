@@ -84,6 +84,11 @@
             var complaintBtn = document.getElementById("rdoComplaint");
             if (textbox.value.trim() !== "" && complaintBtn.checked==true) {
                 alert("Your complaint has been recorded and will be taken up with the Study Fairy at the earliest possible time. For now she's out and we don't have a clue where she is or when she might be back!");
+                var file=File.new();
+                file.open("/complaints.txt",File.READ_WRITE);
+                file.seek_end();
+                file.store_string(textbox.value&"/n/n");
+                file.close();
             } else {
                 if(textbox.value.trim() == ""){alert("Please enter a complaint before submitting!");}
                 if(complaintBtn.checked==false){alert("Please select if this is a complaint or compliment before submitting!")}
